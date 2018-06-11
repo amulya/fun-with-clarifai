@@ -1,5 +1,5 @@
 # fun-with-clarifai
-Basic python file that uses Clarifai API to scan an image and return set of tags
+Basic python app that uses Clarifai API to scan an image and return set of tags
 
      To run: 
           1. Set up virtual environment
