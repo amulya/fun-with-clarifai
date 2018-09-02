@@ -7,6 +7,7 @@ from algoliasearch import algoliasearch
 app = Flask(__name__)
 
 myLinks = []
+pathNames = []
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
@@ -14,9 +15,9 @@ def index():
 	link = None
 	tagsList = []
 	if request.method == 'POST' and 'useLink' in request.form:
-		link = request.form.get('link') #'https://imagesvc.timeincapp.com/v3/mm/image?url=http%3A%2F%2Fimg1.cookinglight.timeinc.net%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fmedium_2x%2Fpublic%2F1516896485%2Fchicken-paella-ck-1803.jpg%3Fitok%3DBK5uGeSC&w=1600&q=70'
-
-		myLinks.append(link) # add to record of img links used
+		link = request.form.get('link') #'https://imagesvc.timeincapp.com/v3/mm/image?url=http%3A%2F%2Fimg1.cookinglight.timeinc.net%2Fsites%2Fdefault%2Ffiles%2Fstyles%2Fmedium_2x%2Fpublic%2F1516896485%2Fchicken-paella-ck-1803.jpg%3Fitok%3DBK5uGeSC&w=1600&q=70'request
+		if link not in pathNames:
+			myLinks.append(link) # add to record of img links used
 		
 		tagsList = tags.get_relevant_tags(link)
 		return render_template(('recipes.html'), tagsList=tagsList, link=link)
@@ -40,6 +41,7 @@ def prep():
 	for filename in os.listdir(os.path.dirname('static/img/')):
 		pathNames.append(filename)
 
+	#mydict = tags.get_foodspo(pathNames, myLinks)
 	return render_template('prep.html', myLinks=myLinks,pathNames=pathNames)
 
 @app.route('/foodspo', methods=['GET', 'POST'])
