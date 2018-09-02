@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/static/stylesheet.css">
+<link rel="stylesheet" type="text/css" href="/seefood/static/stylesheet.css">
 <link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet'>
 	<title>My PrepAIrations</title>
 </head>
 <body style="text-align: center">
 {% extends 'base.html' %}{% block content %}
 <br><br>
-{% for link in myLinks%}
-	<img style="height:40%;width:40%"src={{link}} alt="link_image"><br>
+<h1 style="font-size: 50px">My PrepAIrations</h1>
+{% for path in pathNames %}
+{% if path != '.DS_Store' %}
+	<img style="height:40%;width:40%" src="static/img/{{path}}"" alt="link_image"><br>
+{% endif%}
 {% endfor %}
+{% for link in myLinks%}
+	<img style="height:40%;width:40%" src="{{link}}" alt="link_image"><br>
+{% endfor %}
+{% if myLinks|length == 0 and pathNames|length == 0%}
+<h1 style="font-size: 30px">Looks like you haven't search anything up yet. Visit the home page and stir something up!</h1>
+{% endif %}
 {% endblock %}
 </body>
 </html>

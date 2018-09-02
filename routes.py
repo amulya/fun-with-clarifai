@@ -1,7 +1,8 @@
 from flask import Flask, request, render_template, url_for, redirect
 import tags
 from werkzeug import secure_filename
-import os.path
+import os
+from algoliasearch import algoliasearch
 
 app = Flask(__name__)
 
@@ -35,12 +36,15 @@ def recipes():
 
 @app.route('/prep', methods=['GET', 'POST'])
 def prep():
+	pathNames = []
+	for filename in os.listdir(os.path.dirname('static/img/')):
+		pathNames.append(filename)
 
-	return render_template('prep.html', myLinks=myLinks)
+	return render_template('prep.html', myLinks=myLinks,pathNames=pathNames)
 
 @app.route('/foodspo', methods=['GET', 'POST'])
 def foodspo():
-	return 'hello'
+	return render_template('foodspo.html')
 
 if __name__=='__main__':
 	app.run(debug=True)
