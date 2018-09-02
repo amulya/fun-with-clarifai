@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/static/stylesheet.css">
+<link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet'>
+	<title>My PrepAIrations</title>
+</head>
+<body style="text-align: center">
+{% extends 'base.html' %}{% block content %}
+<br><br>
+{% for link in myLinks%}
+	<img style="height:40%;width:40%"src={{link}} alt="link_image"><br>
+{% endfor %}
+{% endblock %}
+</body>
+</html>
